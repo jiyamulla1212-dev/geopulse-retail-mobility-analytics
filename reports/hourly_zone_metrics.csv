@@ -1,0 +1,6 @@
+zone,hour,visits,dwell_time,txns,sales,conversion_rate_pct
+Downtown,10,45,18.0,12,8400,26.67
+Downtown,18,130,26.0,41,31500,31.54
+Mall Plaza,14,95,22.0,28,22400,29.47
+Mall Plaza,19,165,31.0,54,46800,32.73
+Suburban Hub,11,38,15.0,9,6300,23.68
