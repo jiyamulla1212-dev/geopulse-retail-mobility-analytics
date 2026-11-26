@@ -8,9 +8,10 @@ st.title("GeoPulse: Hyper-Local Retail Mobility Analytics")
 clean_path = Path("data/processed/retail_mobility_clean.csv")
 summary_path = Path("reports/zone_mobility_summary.csv")
 hourly_path = Path("reports/hourly_zone_metrics.csv")
+store_path = Path("reports/store_benchmarks.csv")
 
 if not clean_path.exists() or not summary_path.exists():
-    st.error("Processed data or zone summary not found. Run src/clean.py and src/analytics.py first.")
+    st.error("Processed data or zone summary not found. Run src/pipeline.py first.")
     st.stop()
 
 df = pd.read_csv(clean_path)
@@ -38,6 +39,13 @@ with right_col:
         if selected_zone != "All":
             hourly_df = hourly_df[hourly_df["zone"] == selected_zone]
         st.bar_chart(hourly_df.set_index("hour")["conversion_rate_pct"])
+
+if store_path.exists():
+    st.subheader("Store-Level Benchmarks")
+    store_df = pd.read_csv(store_path)
+    if selected_zone != "All":
+        store_df = store_df[store_df["zone"] == selected_zone]
+    st.dataframe(store_df, use_container_width=True)
 
 st.subheader("Filtered Mobility Records")
 st.dataframe(filtered_df, use_container_width=True)
