@@ -1,0 +1,4 @@
+store_id,zone,total_visitors,avg_dwell_mins,total_orders,total_revenue,revenue_per_visitor
+S002,Mall Plaza,260,26.5,82,69200,266.15
+S001,Downtown,175,22.0,53,39900,228.0
+S003,Suburban Hub,38,15.0,9,6300,165.79
