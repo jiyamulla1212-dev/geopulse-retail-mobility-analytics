@@ -3,6 +3,7 @@ from clean import clean_retail_data, save_cleaned_data
 from validate import validate_mobility_data
 from analytics import summarize_by_zone, save_zone_summary
 from hourly_metrics import compute_hourly_metrics, save_hourly_metrics
+from store_metrics import compute_store_benchmarks, save_store_benchmarks
 from database import load_to_sqlite
 from report_generator import generate_markdown_report
 
@@ -19,11 +20,13 @@ def run_pipeline() -> None:
     if not report["is_valid"]:
         raise RuntimeError(f"Data validation failed: {report}")
 
-    print("4/6 Generating zone and hourly analytical summaries...")
+    print("4/6 Generating zone, hourly, and store analytical summaries...")
     zone_df = summarize_by_zone(clean_df)
     zone_path = save_zone_summary(zone_df)
     hourly_df = compute_hourly_metrics(clean_df)
     hourly_path = save_hourly_metrics(hourly_df)
+    store_df = compute_store_benchmarks(clean_df)
+    save_store_benchmarks(store_df)
 
     print("5/6 Loading cleaned records into SQLite...")
     inserted = load_to_sqlite(str(clean_path))

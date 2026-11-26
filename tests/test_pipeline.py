@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from clean import clean_retail_data
 from analytics import summarize_by_zone
 from hourly_metrics import compute_hourly_metrics
+from store_metrics import compute_store_benchmarks
 
 class TestGeoPulsePipeline(unittest.TestCase):
     def setUp(self):
@@ -34,6 +35,13 @@ class TestGeoPulsePipeline(unittest.TestCase):
         hourly = compute_hourly_metrics(cleaned)
         self.assertEqual(len(hourly), 2)
         self.assertEqual(float(hourly.iloc[0]["conversion_rate_pct"]), 20.0)
+
+    def test_compute_store_benchmarks(self):
+        cleaned = clean_retail_data(self.sample_raw)
+        stores = compute_store_benchmarks(cleaned)
+        self.assertEqual(len(stores), 1)
+        self.assertEqual(stores.iloc[0]["store_id"], "S001")
+        self.assertEqual(float(stores.iloc[0]["revenue_per_visitor"]), 133.33)
 
 if __name__ == "__main__":
     unittest.main()
