@@ -1,0 +1,6 @@
+store_id,zone,date,hour,foot_traffic,avg_dwell_mins,transactions,revenue,revenue_per_visitor,traffic_zscore,is_spike
+S002,Mall Plaza,2026-11-10,19,165,31,54,46800,283.64,1.44,False
+S001,Downtown,2026-11-10,18,130,26,41,31500,242.31,0.73,False
+S002,Mall Plaza,2026-11-10,14,95,22,28,22400,235.79,0.01,False
+S001,Downtown,2026-11-10,10,45,18,12,8400,186.67,-1.02,False
+S003,Suburban Hub,2026-11-10,11,38,15,9,6300,165.79,-1.16,False
