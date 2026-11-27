@@ -4,6 +4,8 @@
 - **Top Revenue Zone:** Mall Plaza (Revenue: 69,200, Foot Traffic: 260)
 - **Peak Conversion Window:** Mall Plaza at Hour 19:00 (32.73% conversion)
 - **Total Zones Analyzed:** 3
+- **Top Performing Store:** S002 (Mall Plaza) — Revenue/Visitor: 266.15
+- **Detected Traffic Spikes:** 0 flagged window(s)
 
 ## Zone Performance Breakdown
 | zone         |   total_foot_traffic |   avg_dwell_mins |   total_transactions |   total_revenue |   peak_hour |
