@@ -9,6 +9,7 @@ clean_path = Path("data/processed/retail_mobility_clean.csv")
 summary_path = Path("reports/zone_mobility_summary.csv")
 hourly_path = Path("reports/hourly_zone_metrics.csv")
 store_path = Path("reports/store_benchmarks.csv")
+anomaly_path = Path("reports/traffic_anomalies.csv")
 
 if not clean_path.exists() or not summary_path.exists():
     st.error("Processed data or zone summary not found. Run src/pipeline.py first.")
@@ -46,6 +47,13 @@ if store_path.exists():
     if selected_zone != "All":
         store_df = store_df[store_df["zone"] == selected_zone]
     st.dataframe(store_df, use_container_width=True)
+
+if anomaly_path.exists():
+    st.subheader("Traffic Spike & Anomaly Monitor")
+    anomaly_df = pd.read_csv(anomaly_path)
+    if selected_zone != "All":
+        anomaly_df = anomaly_df[anomaly_df["zone"] == selected_zone]
+    st.dataframe(anomaly_df[["store_id", "zone", "hour", "foot_traffic", "traffic_zscore", "is_spike"]], use_container_width=True)
 
 st.subheader("Filtered Mobility Records")
 st.dataframe(filtered_df, use_container_width=True)
